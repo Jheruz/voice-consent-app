@@ -5,8 +5,10 @@ import themeStyle from '../theme/styles'
 
 function ScreenWrapper({ children }) {
   return (
-    <SafeAreaView>
-      <View style={[themeStyle.contentTopSpacing, themeStyle.pageHorizontalSpacing]}>
+    <SafeAreaView style={themeStyle.flex1}>
+      <View
+        style={[themeStyle.flex1, themeStyle.contentTopSpacing, themeStyle.pageHorizontalSpacing]}
+      >
         {children}
       </View>
     </SafeAreaView>
