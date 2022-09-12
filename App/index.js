@@ -1,14 +1,9 @@
-import React from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+import React from 'react'
+
+import Routes from './routes/index'
 
 function App() {
-  return (
-    <SafeAreaView>
-      <View>
-        <Text>Test</Text>
-      </View>
-    </SafeAreaView>
-  );
+  return <Routes />
 }
 
-export default App;
+export default App
