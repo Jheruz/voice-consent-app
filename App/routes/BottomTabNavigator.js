@@ -26,8 +26,12 @@ const screenOptions = {
 export default function () {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name={routeList.HOME_TAB} component={Home} />
-      <Tab.Screen name={routeList.CONSENTS_TAB} component={Consents} />
+      <Tab.Screen name={routeList.HOME_TAB} component={Home} options={{ title: 'Home' }} />
+      <Tab.Screen
+        name={routeList.CONSENTS_TAB}
+        component={Consents}
+        options={{ title: 'Consents' }}
+      />
     </Tab.Navigator>
   )
 }
