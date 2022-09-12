@@ -15,6 +15,10 @@ export default StyleSheet.create({
     color: themeColor.black,
     fontSize: 20,
   },
+  body: {
+    color: themeColor.black,
+    fontSize: 15,
+  },
 
   // alignments
   alignItemsCenter: {

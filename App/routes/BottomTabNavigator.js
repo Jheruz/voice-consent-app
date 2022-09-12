@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import Home from '../screens/home'
 import Consents from '../screens/consents'
+import Home from '../screens/home'
 import themeColor from '../theme/colors'
 
 import routeList from './list'
@@ -26,8 +26,8 @@ const screenOptions = {
 export default function () {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name={routeList.HOME} component={Home} />
-      <Tab.Screen name={routeList.CONSENTS} component={Consents} />
+      <Tab.Screen name={routeList.HOME_TAB} component={Home} />
+      <Tab.Screen name={routeList.CONSENTS_TAB} component={Consents} />
     </Tab.Navigator>
   )
 }
