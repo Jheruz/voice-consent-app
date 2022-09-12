@@ -3,5 +3,5 @@ export default {
   CONSENT_FORM: 'consent_form',
 
   HOME_TAB: 'home_tab',
-  CONSENTS_TAB: 'consents',
+  CONSENTS_TAB: 'consents_tab',
 }
