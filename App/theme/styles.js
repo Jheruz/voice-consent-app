@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 import themeColor from './colors'
 
-const globalSpacing = 20
+export const globalSpacing = 20
 
 export default StyleSheet.create({
   // fonts
@@ -11,8 +11,20 @@ export default StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
+  label: {
+    color: themeColor.black,
+    fontSize: 20,
+  },
 
   // alignments
+  alignItemsCenter: {
+    alignItems: 'center',
+  },
+  alignItemsEnd: {
+    alignItems: 'flex-end',
+  },
+
+  // spacing
   contentTopSpacing: {
     paddingTop: globalSpacing * 3,
     paddingBottom: globalSpacing,
@@ -20,7 +32,16 @@ export default StyleSheet.create({
   pageHorizontalSpacing: {
     paddingHorizontal: globalSpacing,
   },
-  alignItemsCenter: {
-    alignItems: 'center',
+  spacingLeft: {
+    marginLeft: globalSpacing,
+  },
+  spacingLeftMedium: {
+    marginLeft: globalSpacing / 2,
+  },
+  spacingBottom: {
+    marginBottom: globalSpacing,
+  },
+  spacingBottomMedium: {
+    marginBottom: globalSpacing / 2,
   },
 })
