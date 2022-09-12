@@ -1,11 +1,16 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
+import ScreenWrapper from '../../components/ScreenWrapper'
+import themeStyle from '../../theme/styles'
+
 function Home() {
   return (
-    <View>
-      <Text>Home screen</Text>
-    </View>
+    <ScreenWrapper>
+      <View style={themeStyle.alignItemsCenter}>
+        <Text style={themeStyle.heading}>Consent Form</Text>
+      </View>
+    </ScreenWrapper>
   )
 }
 
