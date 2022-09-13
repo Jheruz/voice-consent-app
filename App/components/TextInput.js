@@ -14,7 +14,7 @@ function TextInput({ label, ...inputProps }) {
       <RNTextInput
         {...inputProps}
         style={styles.input}
-        placeholderTextColor={themeColor.lightGray}
+        placeholderTextColor={themeColor.darkGray}
       />
     </View>
   )

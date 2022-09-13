@@ -17,7 +17,7 @@ function Dropdown({ label, data, value, onChange, ...rest }) {
         value={value}
         onChange={onChange}
         style={styles.dropdown}
-        placeholderStyle={{ fontSize: themeStyle.body.fontSize, color: themeColor.lightGray }}
+        placeholderStyle={{ fontSize: themeStyle.body.fontSize, color: themeColor.darkGray }}
         selectedTextStyle={themeStyle.body}
         itemTextStyle={themeStyle.body}
         {...rest}
