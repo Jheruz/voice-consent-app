@@ -5,6 +5,10 @@ import themeColor from './colors'
 export const globalSpacing = 20
 
 export default StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
+
   // fonts
   heading: {
     color: themeColor.black,
@@ -17,10 +21,22 @@ export default StyleSheet.create({
   },
   body: {
     color: themeColor.black,
-    fontSize: 15,
+    fontSize: 18,
+  },
+  textCenter: {
+    textAlign: 'center',
   },
 
   // alignments
+  flexRowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  flexRowCenterSpaceBetween: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   alignItemsCenter: {
     alignItems: 'center',
   },
