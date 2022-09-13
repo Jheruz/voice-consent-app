@@ -1,5 +1,8 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Image, Text, View } from 'react-native'
+
+import Checklist from '../../assets/checklist.png'
+import ArrowRight from '../../assets/arrow-right.png'
 
 import Button from '../../components/Button'
 import themeStyle from '../../theme/styles'
@@ -9,7 +12,7 @@ function Success({ onAddAgain, onViewConsents }) {
     <>
       <View style={[themeStyle.spacingBottom, themeStyle.alignItemsCenter]}>
         <Button type="circle">
-          <Text>Check</Text>
+          <Image source={Checklist} style={themeStyle.iconBig} resizeMode="contain" />
         </Button>
       </View>
 
@@ -20,13 +23,13 @@ function Success({ onAddAgain, onViewConsents }) {
       </View>
 
       <View style={[themeStyle.spacingBottom, themeStyle.alignItemsCenter]}>
-        <Button onPress={onViewConsents}>
+        <Button onPress={onViewConsents} rightIcon={ArrowRight}>
           <Text>View all consents</Text>
         </Button>
       </View>
 
       <View style={themeStyle.alignItemsCenter}>
-        <Button onPress={onAddAgain}>
+        <Button onPress={onAddAgain} rightIcon={ArrowRight}>
           <Text>Add again</Text>
         </Button>
       </View>

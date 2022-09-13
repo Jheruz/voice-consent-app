@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   circleWrapper: {
     backgroundColor: themeColor.gray,
-    padding: 25,
+    padding: 20,
     borderRadius: 50,
   },
   button: {
@@ -42,8 +42,7 @@ const styles = StyleSheet.create({
   },
   buttonIcon: {
     ...themeStyle.spacingLeftMedium,
-    width: 20,
-    height: 20,
+    ...themeStyle.icon,
   },
 })
 

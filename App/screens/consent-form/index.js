@@ -43,14 +43,14 @@ function ConsentForm({ navigation }) {
           {recording ? (
             <Button onPress={() => setPlaying(!playing)} type="circle">
               {playing ? (
-                <Image source={Pause} style={styles.imageStyle} resizeMode="contain" />
+                <Image source={Pause} style={themeStyle.icon} resizeMode="contain" />
               ) : (
-                <Image source={Play} style={styles.imageStyle} resizeMode="contain" />
+                <Image source={Play} style={themeStyle.icon} resizeMode="contain" />
               )}
             </Button>
           ) : (
             <Button onPress={() => setRecording(true)} type="circle">
-              <Image source={Microphone} style={styles.imageStyle} resizeMode="contain" />
+              <Image source={Microphone} style={themeStyle.icon} resizeMode="contain" />
             </Button>
           )}
 
@@ -84,10 +84,6 @@ function ConsentForm({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  imageStyle: {
-    width: 25,
-    height: 25,
-  },
   footer: {
     ...themeStyle.flexRowCenter,
     borderTopWidth: 1,

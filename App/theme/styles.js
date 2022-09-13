@@ -8,6 +8,14 @@ export default StyleSheet.create({
   flex1: {
     flex: 1,
   },
+  icon: {
+    width: 25,
+    height: 25,
+  },
+  iconBig: {
+    width: 30,
+    height: 30,
+  },
 
   // fonts
   heading: {
