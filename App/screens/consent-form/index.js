@@ -1,5 +1,9 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
+
+import Microphone from '../../assets/microphone.png'
+import Play from '../../assets/play.png'
+import Pause from '../../assets/pause.png'
 
 import Button from '../../components/Button'
 import ScreenWrapper from '../../components/ScreenWrapper'
@@ -10,7 +14,7 @@ import themeStyle from '../../theme/styles'
 import useController from './index.controller'
 
 function ConsentForm({ navigation }) {
-  const { recording, setRecording } = useController()
+  const { playing, recording, setPlaying, setRecording } = useController()
 
   return (
     <>
@@ -36,9 +40,19 @@ function ConsentForm({ navigation }) {
         <View
           style={recording ? themeStyle.flexRowCenterSpaceBetween : themeStyle.alignItemsCenter}
         >
-          <Button onPress={() => setRecording(true)} type="circle">
-            <Text>{recording ? 'Play' : 'Rec'}</Text>
-          </Button>
+          {recording ? (
+            <Button onPress={() => setPlaying(!playing)} type="circle">
+              {playing ? (
+                <Image source={Pause} style={styles.imageStyle} resizeMode="contain" />
+              ) : (
+                <Image source={Play} style={styles.imageStyle} resizeMode="contain" />
+              )}
+            </Button>
+          ) : (
+            <Button onPress={() => setRecording(true)} type="circle">
+              <Image source={Microphone} style={styles.imageStyle} resizeMode="contain" />
+            </Button>
+          )}
 
           {recording && <Text style={themeStyle.body}>You responded</Text>}
         </View>
@@ -70,6 +84,10 @@ function ConsentForm({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  imageStyle: {
+    width: 25,
+    height: 25,
+  },
   footer: {
     ...themeStyle.flexRowCenter,
     borderTopWidth: 1,
