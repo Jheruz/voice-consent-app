@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
+import ArrowRight from '../../assets/arrow-right.png'
 import Button from '../../components/Button'
 import Dropdown from '../../components/Dropdown'
 import TextInput from '../../components/TextInput'
@@ -31,7 +32,7 @@ function Form({ language, name, onNext, setLanguage, setName }) {
       </View>
 
       <View style={themeStyle.alignItemsEnd}>
-        <Button onPress={onNext}>
+        <Button onPress={onNext} rightIcon={ArrowRight}>
           <Text style={themeStyle.body}>Next</Text>
         </Button>
       </View>
