@@ -2,12 +2,22 @@ import React from 'react'
 import { TouchableOpacity, View, StyleSheet } from 'react-native'
 
 import themeColor from '../theme/colors'
-import themeStyle, { globalSpacing } from '../theme/styles'
+import { globalSpacing } from '../theme/styles'
 
-function Button({ children, ...buttonProps }) {
+function Button({ children, type, noColor, ...buttonProps }) {
+  const isCircle = type === 'circle'
+
+  if (noColor) {
+    return (
+      <TouchableOpacity {...buttonProps}>
+        <View style={styles.button}>{children}</View>
+      </TouchableOpacity>
+    )
+  }
+
   return (
     <TouchableOpacity {...buttonProps}>
-      <View style={styles.wrapper}>{children}</View>
+      <View style={isCircle ? styles.circleWrapper : styles.wrapper}>{children}</View>
     </TouchableOpacity>
   )
 }
@@ -15,6 +25,15 @@ function Button({ children, ...buttonProps }) {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: themeColor.gray,
+    paddingVertical: globalSpacing / 2,
+    paddingHorizontal: globalSpacing * 2,
+  },
+  circleWrapper: {
+    backgroundColor: themeColor.gray,
+    padding: 25,
+    borderRadius: 50,
+  },
+  button: {
     paddingVertical: globalSpacing / 2,
     paddingHorizontal: globalSpacing * 2,
   },
