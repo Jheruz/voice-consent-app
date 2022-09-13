@@ -72,4 +72,10 @@ export default StyleSheet.create({
   spacingBottomMedium: {
     marginBottom: globalSpacing / 2,
   },
+  spacingRight: {
+    marginRight: globalSpacing,
+  },
+  spacingRightMedium: {
+    marginRight: globalSpacing / 2,
+  },
 })
