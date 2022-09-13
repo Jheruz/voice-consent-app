@@ -8,8 +8,8 @@ import TextInput from '../../components/TextInput'
 import themeStyle from '../../theme/styles'
 
 const languages = [
-  { label: 'English', value: 'en' },
-  { label: 'French', value: 'fr' },
+  { label: 'English', value: 'en-US' },
+  { label: 'French', value: 'fr-FR' },
 ]
 
 function Form({ language, name, onNext, setLanguage, setName }) {
