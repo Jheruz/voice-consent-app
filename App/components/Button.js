@@ -4,7 +4,7 @@ import { TouchableOpacity, View, StyleSheet, Image } from 'react-native'
 import themeColor from '../theme/colors'
 import themeStyle, { globalSpacing } from '../theme/styles'
 
-function Button({ children, type, noColor, rightIcon, ...buttonProps }) {
+function Button({ children, type, noColor, rightIcon, small, ...buttonProps }) {
   const isCircle = type === 'circle'
   let wrapperStyle = isCircle ? styles.circleWrapper : styles.wrapper
 
@@ -14,10 +14,12 @@ function Button({ children, type, noColor, rightIcon, ...buttonProps }) {
 
   return (
     <TouchableOpacity {...buttonProps}>
-      <View style={wrapperStyle}>
+      <View style={[wrapperStyle, isCircle && small && styles.circleWrapperSmall]}>
         {children}
 
-        {!!rightIcon && <Image source={rightIcon} style={styles.buttonIcon} resizeMode="contain" />}
+        {!!rightIcon && (
+          <Image source={rightIcon} style={[styles.buttonIcon]} resizeMode="contain" />
+        )}
       </View>
     </TouchableOpacity>
   )
@@ -34,6 +36,9 @@ const styles = StyleSheet.create({
     backgroundColor: themeColor.gray,
     padding: 20,
     borderRadius: 50,
+  },
+  circleWrapperSmall: {
+    padding: 10,
   },
   button: {
     ...themeStyle.flexRowCenter,
