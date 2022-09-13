@@ -11,13 +11,18 @@ function TextInput({ label, ...inputProps }) {
         <Text style={themeStyle.label}>{label}</Text>
       </View>
 
-      <RNTextInput {...inputProps} style={styles.input} />
+      <RNTextInput
+        {...inputProps}
+        style={styles.input}
+        placeholderTextColor={themeColor.lightGray}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   input: {
+    ...themeStyle.body,
     borderWidth: 1,
     borderColor: themeColor.gray,
     paddingHorizontal: globalSpacing,
