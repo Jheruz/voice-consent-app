@@ -27,7 +27,7 @@ function Form({ language, name, onNext, setLanguage, setName }) {
           placeholder="Select Language"
           labelField="label"
           valueField="value"
-          onChange={(item) => setLanguage(item.value)}
+          onChange={(item) => setLanguage(item)}
         />
       </View>
 

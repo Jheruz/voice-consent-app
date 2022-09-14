@@ -3,11 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 export const consentsSlice = createSlice({
   name: 'consents',
   initialState: {
-    data: [],
+    consents: {
+      data: [],
+    },
   },
   reducers: {
     addConsent: (state, action) => {
-      console.log('addConsent', action.payload)
+      state.consents.data.push(action.payload)
     },
   },
 })

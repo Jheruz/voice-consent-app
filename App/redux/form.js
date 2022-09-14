@@ -1,20 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const formKeys = {
-  firstName: 'firstName',
+  name: 'name',
   language: 'language',
 }
 
 export const formSlice = createSlice({
   name: 'form',
   initialState: {
-    firstName: '',
-    language: {},
+    form: {
+      name: '',
+      language: null,
+    },
   },
   reducers: {
     updateForm: (state, action) => {
       const { key, value } = action.payload
-      console.log(key, value)
+      state.form[key] = value
     },
   },
 })

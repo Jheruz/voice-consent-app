@@ -14,11 +14,11 @@ import themeStyle, { globalSpacing } from '../../theme/styles'
 import useController from './index.controller'
 
 function Consents() {
-  const { data, playing, setPlaying, keyExtractor } = useController()
+  const { data, playing, togglePlay, keyExtractor } = useController()
 
   const _renderItem = ({ index, item }) => {
     const isDark = index % 2 === 0
-    const isPlaying = playing?.id === item.id
+    const isPlaying = index === playing?.index
 
     return (
       <View style={[styles.itemWrapper, isDark && styles.itemWrapperDark]}>
@@ -26,20 +26,26 @@ function Consents() {
           <Text style={themeStyle.label} numberOfLines={1}>
             {item.name}
           </Text>
-          <Text>Language: {item.language.label}</Text>
+          <Text style={{ color: themeColor.mediumGray }}>Language: {item.language.label}</Text>
         </View>
 
         <View style={themeStyle.flexRowCenter}>
           <View style={themeStyle.spacingRight}>
             <Image
-              source={item.consentGiven ? Check : Close}
+              source={
+                item.audioTextValue === 'yes' || item.audioTextValue === 'oui' ? Check : Close
+              }
               style={themeStyle.icon}
               resizeMode="contain"
             />
           </View>
 
           <View style={themeStyle.spacingLeft}>
-            <Button onPress={() => setPlaying(isPlaying ? null : item)} type="circle" small>
+            <Button
+              onPress={() => togglePlay(isPlaying ? null : { index, ...item })}
+              type="circle"
+              small
+            >
               <Image
                 source={isPlaying ? Pause : Play}
                 style={themeStyle.icon}
@@ -77,12 +83,13 @@ function Consents() {
         <Text style={themeStyle.body}>Consent Given</Text>
       </View>
 
-      <View>
+      <View style={themeStyle.flex1}>
         <FlatList
           data={data}
           renderItem={_renderItem}
           keyExtractor={keyExtractor}
           ListEmptyComponent={_renderEmpty}
+          contentContainerStyle={{ flexGrow: 1 }}
         />
       </View>
     </ScreenWrapper>

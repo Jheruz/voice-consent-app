@@ -1,13 +1,26 @@
 import { useState } from 'react'
+import { Alert } from 'react-native'
+import { useDispatch } from 'react-redux'
 
+import { formKeys, updateForm } from '../../redux/form'
 import routeList from '../../routes/list'
 
 export default function ({ navigation, route }) {
-  const [name, setName] = useState('')
-  const [language, setLanguage] = useState('')
+  const dispatch = useDispatch()
+  const [name, setName] = useState('Jerome B Dela Cruz')
+  const [language, setLanguage] = useState({ label: 'English', value: 'en-US' })
   const doneForm = route.params?.doneForm || false
 
-  const onNext = () => {
+  const onNext = async () => {
+    // validate
+    if (!name || !language) {
+      Alert.alert('Form field is required', 'Please enter your name and select language')
+      return
+    }
+    // set data to redux
+    await dispatch(updateForm({ key: formKeys.name, value: name }))
+    await dispatch(updateForm({ key: formKeys.language, value: language }))
+    // move to next screen
     navigation.navigate(routeList.CONSENT_FORM)
   }
 

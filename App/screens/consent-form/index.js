@@ -7,14 +7,14 @@ import Pause from '../../assets/pause.png'
 
 import Button from '../../components/Button'
 import ScreenWrapper from '../../components/ScreenWrapper'
-import routeList from '../../routes/list'
 import themeColor from '../../theme/colors'
 import themeStyle from '../../theme/styles'
 
 import useController from './index.controller'
 
-function ConsentForm({ navigation }) {
-  const { playing, recording, setPlaying, setRecording } = useController()
+function ConsentForm(props) {
+  const { language, playing, recorded, onAnswerConsent, onRetry, onSave, togglePlay } =
+    useController(props)
 
   return (
     <>
@@ -33,15 +33,15 @@ function ConsentForm({ navigation }) {
 
         <View style={themeStyle.spacingBottom}>
           <Text style={themeStyle.body}>
-            Do you agree to this agreement? Please respond by saying “Yes” or “No”.
+            Do you agree to this agreement? Please respond by saying{' '}
+            {language.value === 'en-US' ? '“Yes”' : '"Oui"'} or{' '}
+            {language.value === 'en-US' ? '“No”' : '"Non"'}.
           </Text>
         </View>
 
-        <View
-          style={recording ? themeStyle.flexRowCenterSpaceBetween : themeStyle.alignItemsCenter}
-        >
-          {recording ? (
-            <Button onPress={() => setPlaying(!playing)} type="circle">
+        <View style={recorded ? themeStyle.flexRowCenterSpaceBetween : themeStyle.alignItemsCenter}>
+          {recorded ? (
+            <Button onPress={() => togglePlay(!playing)} type="circle">
               {playing ? (
                 <Image source={Pause} style={themeStyle.icon} resizeMode="contain" />
               ) : (
@@ -49,32 +49,24 @@ function ConsentForm({ navigation }) {
               )}
             </Button>
           ) : (
-            <Button onPress={() => setRecording(true)} type="circle">
+            <Button onPress={onAnswerConsent} type="circle">
               <Image source={Microphone} style={themeStyle.icon} resizeMode="contain" />
             </Button>
           )}
 
-          {recording && <Text style={themeStyle.body}>You responded</Text>}
+          {recorded && <Text style={themeStyle.body}>You responded</Text>}
         </View>
       </ScreenWrapper>
 
-      {recording && (
+      {recorded && (
         <View style={styles.footer}>
-          <Button
-            onPress={() => setRecording(false)}
-            style={[themeStyle.flex1, themeStyle.alignItemsCenter]}
-            noColor
-          >
+          <Button onPress={onRetry} style={[themeStyle.flex1, themeStyle.alignItemsCenter]} noColor>
             <Text style={themeStyle.body}>Retry</Text>
           </Button>
 
           <View style={styles.footerDivider} />
 
-          <Button
-            onPress={() => navigation.navigate(routeList.HOME_TAB, { doneForm: true })}
-            style={[themeStyle.flex1, themeStyle.alignItemsCenter]}
-            noColor
-          >
+          <Button onPress={onSave} style={[themeStyle.flex1, themeStyle.alignItemsCenter]} noColor>
             <Text style={themeStyle.body}>Save</Text>
           </Button>
         </View>

@@ -5,6 +5,7 @@ import Checklist from '../../assets/checklist.png'
 import ArrowRight from '../../assets/arrow-right.png'
 
 import Button from '../../components/Button'
+import themeColor from '../../theme/colors'
 import themeStyle from '../../theme/styles'
 
 function Success({ onAddAgain, onViewConsents }) {
@@ -24,13 +25,13 @@ function Success({ onAddAgain, onViewConsents }) {
 
       <View style={[themeStyle.spacingBottom, themeStyle.alignItemsCenter]}>
         <Button onPress={onViewConsents} rightIcon={ArrowRight}>
-          <Text>View all consents</Text>
+          <Text style={{ color: themeColor.black }}>View all consents</Text>
         </Button>
       </View>
 
       <View style={themeStyle.alignItemsCenter}>
         <Button onPress={onAddAgain} rightIcon={ArrowRight}>
-          <Text>Add again</Text>
+          <Text style={{ color: themeColor.black }}>Add again</Text>
         </Button>
       </View>
     </>

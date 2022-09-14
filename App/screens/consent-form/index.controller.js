@@ -1,31 +1,95 @@
 import { useEffect, useState } from 'react'
+import { Alert } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import Voice from '@react-native-community/voice'
 
-export default function () {
-  const [recording] = useState(false)
+import { addConsent } from '../../redux/consents'
+import routeList from '../../routes/list'
+import service from '../../service'
+
+export default function ({ navigation }) {
+  const dispatch = useDispatch()
+  const { name, language } = useSelector((state) => state.form.form)
+  const [recorded, setRecorded] = useState(false)
   const [playing, setPlaying] = useState(false)
+  const [textResult, setTextResult] = useState('')
 
   useEffect(() => {
     Voice.onSpeechResults = onSpeechResults
+    const listener = service.ttsOnFinished(onDoneSpeaking)
 
     return () => {
-      Voice.destroy()
+      Voice.stop().then(Voice.removeAllListeners)
+      listener.remove()
+      onRetry()
     }
   }, [])
 
-  const onSpeechResults = (data) => {
-    console.log('recording end', data)
+  const onAnswerConsent = async () => {
+    Voice.start(language.value)
   }
 
-  const setRecording = () => {
-    console.log('recording...')
-    Voice.start('en-US')
+  const onSpeechResults = (data) => {
+    console.log('success speech value ==>', recorded, data.value[0])
+    setTextResult(data.value[0])
+    setRecorded(true)
+  }
+
+  const onDoneSpeaking = () => {
+    setPlaying(false)
+  }
+
+  const togglePlay = (shouldPlay) => {
+    if (shouldPlay) {
+      service.ttsSpeak(textResult, language.value)
+    } else {
+      service.ttsStop()
+    }
+    setPlaying(shouldPlay)
+  }
+
+  const onRetry = () => {
+    service.ttsStop()
+    setRecorded(false)
+    setPlaying(false)
+    setTextResult('')
+  }
+
+  const validate = () => {
+    if (language.value === 'en-US') {
+      if (textResult !== 'yes' && textResult !== 'no') {
+        Alert.alert('Invalid english consent', "Please say 'Yes' or 'No' only")
+        return false
+      }
+    } else {
+      if (textResult !== 'oui' && textResult !== 'non') {
+        Alert.alert('Invalid french consent', "Please say 'Oui' or 'Non' only")
+        return false
+      }
+    }
+    return true
+  }
+
+  const onSave = async () => {
+    const toSave = {
+      name,
+      language,
+      audioTextValue: textResult,
+    }
+    const isOk = validate()
+    if (isOk) {
+      await dispatch(addConsent(toSave)) // add consent to persisted redux
+      navigation.navigate(routeList.HOME_TAB, { doneForm: true }) // navigate to next screen
+    }
   }
 
   return {
+    language,
     playing,
-    recording,
-    setPlaying,
-    setRecording,
+    recorded,
+    onAnswerConsent,
+    onRetry,
+    onSave,
+    togglePlay,
   }
 }
