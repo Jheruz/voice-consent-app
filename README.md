@@ -12,6 +12,6 @@
 
 # How to run (tested only on android)
 
-- yarn android
+- `yarn android` or `yarn start`
 
 This app created for exam purpose only.
