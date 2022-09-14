@@ -7,8 +7,8 @@ import routeList from '../../routes/list'
 
 export default function ({ navigation, route }) {
   const dispatch = useDispatch()
-  const [name, setName] = useState('Jerome B Dela Cruz')
-  const [language, setLanguage] = useState({ label: 'English', value: 'en-US' })
+  const [name, setName] = useState('')
+  const [language, setLanguage] = useState(null)
   const doneForm = route.params?.doneForm || false
 
   const onNext = async () => {

@@ -19,7 +19,7 @@ export default function ({ navigation }) {
     const listener = service.ttsOnFinished(onDoneSpeaking)
 
     return () => {
-      Voice.stop().then(Voice.removeAllListeners)
+      Voice.destroy().then(Voice.removeAllListeners)
       listener.remove()
       onRetry()
     }
@@ -30,7 +30,6 @@ export default function ({ navigation }) {
   }
 
   const onSpeechResults = (data) => {
-    console.log('success speech value ==>', recorded, data.value[0])
     setTextResult(data.value[0])
     setRecorded(true)
   }
