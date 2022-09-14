@@ -6,4 +6,12 @@
 - Can play the consent given to speech
 - Can display the list of consent given
 
+# Setup
+
+- after clonse just run `yarn`
+
+# How to run (tested only on android)
+
+- yarn android
+
 This app created for exam purpose only.
